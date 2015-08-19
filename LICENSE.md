@@ -1,6 +1,6 @@
 The Arbiter.jl package is licensed under the MIT "Expat" License:
 
-> Copyright (c) 2015: Eric Davies.
+> Copyright (c) 2015: Invenia Technical Computing.
 >
 > Permission is hereby granted, free of charge, to any person obtaining
 > a copy of this software and associated documentation files (the
