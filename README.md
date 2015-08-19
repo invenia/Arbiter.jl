@@ -1,5 +1,8 @@
 # Arbiter.jl
 
+[![Build Status](https://travis-ci.org/invenia/Arbiter.jl.svg)](https://travis-ci.org/invenia/Arbiter.jl) [![Build status](https://ci.appveyor.com/api/projects/status/mlomdy661hay7fui?svg=true)](https://ci.appveyor.com/project/iamed2/arbiter-jl)
+ [![codecov.io](http://codecov.io/github/invenia/Arbiter.jl/coverage.svg?branch=master)](http://codecov.io/github/invenia/Arbiter.jl?branch=master)
+
 Arbiter is a task-scheduler that resolves task dependencies. Given a set of 
 tasks and their dependencies, Arbiter will run the tasks such that no task is 
 run before a dependency has already successfully run.
