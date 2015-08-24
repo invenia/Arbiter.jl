@@ -11,9 +11,9 @@ This package is a Julia port of [Arbiter](https://github.com/invenia/Arbiter).
 
 ## Installation
 
-Arbiter.jl is not yet available in METADATA. To install:  
+Arbiter.jl is available in METADATA. To install:  
 ```julia
-Pkg.clone("https://github.com/invenia/Arbiter.jl.git")
+Pkg.add("Arbiter")
 ```
 
 ## Usage

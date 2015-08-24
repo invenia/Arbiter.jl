@@ -6,15 +6,15 @@ import ..ArbiterSchedulers: Scheduler, start_task!, end_task!, isfinished
 export task_loop
 
 immutable Results
-	completed::ImmutableNodeSet
-	failed::ImmutableNodeSet
+    completed::ImmutableNodeSet
+    failed::ImmutableNodeSet
 end
 
 Results(completed, failed) = Results(ImmutableNodeSet(completed), ImmutableNodeSet(failed))
 
 immutable TaskResult
-	name::Symbol
-	successful::Bool
+    name::Symbol
+    successful::Bool
 end
 
 """
@@ -29,36 +29,36 @@ wait: (optional, None) A function to run whenever there aren't any
     return an iterable of TaskResults.
 """
 function task_loop(tasks, execute::Function, wait::Nullable{Function})
-	completed_tasks = NodeSet()
-	failed_tasks = NodeSet()
+    completed_tasks = NodeSet()
+    failed_tasks = NodeSet()
 
-	Scheduler(tasks, completed_tasks, failed_tasks) do scheduler
-		while !isfinished(scheduler)
-			task = start_task!(scheduler)
+    Scheduler(tasks, completed_tasks, failed_tasks) do scheduler
+        while !isfinished(scheduler)
+            task = start_task!(scheduler)
 
-			while !isnull(task)
-				let result = execute(get(task))
+            while !isnull(task)
+                let result = execute(get(task))
 
-					# result exists iff execute is synchronous
-					if !isnull(result)
-						let task_result = get(result)
-							end_task!(scheduler, task_result.name, task_result.successful)
-						end
-					end
-				end
+                    # result exists iff execute is synchronous
+                    if !isnull(result)
+                        let task_result = get(result)
+                            end_task!(scheduler, task_result.name, task_result.successful)
+                        end
+                    end
+                end
 
-				task = start_task!(scheduler)
-			end
+                task = start_task!(scheduler)
+            end
 
-			if !isnull(wait)
-				for task_result in wait()
-					end_task!(scheduler, task_result.name, task_result.successful)
-				end
-			end
-		end
-	end
+            if !isnull(wait)
+                for task_result in wait()
+                    end_task!(scheduler, task_result.name, task_result.successful)
+                end
+            end
+        end
+    end
 
-	return Results(completed_tasks, failed_tasks)
+    return Results(completed_tasks, failed_tasks)
 end
 
 task_loop(tasks, execute::Function, wait::Function) = task_loop(tasks, execute, Nullable(wait))

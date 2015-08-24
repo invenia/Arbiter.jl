@@ -7,9 +7,9 @@ export ArbiterTask
 import ..ArbiterGraphs: ImmutableNodeSet
 
 immutable ArbiterTask
-	name::Symbol
-	func::Function
-	dependencies::ImmutableNodeSet
+    name::Symbol
+    func::Function
+    dependencies::ImmutableNodeSet
 end
 
 """
@@ -22,7 +22,7 @@ dependencies: (optional, ()) Any dependencies that this task relies
     on.
 """
 function ArbiterTask(name, func::Function, dependencies::Any=())
-	return ArbiterTask(symbol(name), func, ImmutableNodeSet([symbol(d) for d in dependencies]))
+    return ArbiterTask(symbol(name), func, ImmutableNodeSet([symbol(d) for d in dependencies]))
 end
 
 end
