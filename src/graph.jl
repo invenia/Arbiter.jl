@@ -90,6 +90,8 @@ function ancestor_of(graph::ArbiterGraph, name::Symbol, ancestor::Symbol, visite
     node = graph._nodes[name]
 
     stack = Stack(Symbol)
+
+    # Note: append! is not available for Stack
     for parent in node.parents
         push!(stack, parent)
     end
